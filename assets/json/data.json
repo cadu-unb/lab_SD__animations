@@ -1,0 +1,26 @@
+{
+  "titulo": "Lab SD – Animações",
+  "secoes": [
+    {
+      "id": "desafio",
+      "titulo": "Desafio",
+      "itens": [
+        { "titulo": "8p1 – Semáforos", "href": "desafio/8p1/" }
+      ]
+    },
+    {
+      "id": "validacoes",
+      "titulo": "Validações",
+      "itens": [
+        { "titulo": "8v0 – Relógio digital", "href": "validacoes/8v0/" }
+      ]
+    },
+    {
+      "id": "relatorios",
+      "titulo": "Relatórios",
+      "itens": [
+        { "titulo": "Relatório 2", "href": "md.html?src=relatorios/relatorio2.md" }
+      ]
+    }
+  ]
+}
