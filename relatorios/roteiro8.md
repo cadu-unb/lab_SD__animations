@@ -1,10 +1,12 @@
 # Laboratório de Sistemas Digitais — Experimento 08
 
-> Conversão de [`Roteiro_08_v3.pdf`](Roteiro_08_v3.pdf) para Markdown.
-> Texto transcrito do PDF; erros de digitação óbvios foram corrigidos (lista em [`CLASSIFICACAO_ILUSTRACOES.md`](CLASSIFICACAO_ILUSTRACOES.md#apêndice-b--correções-de-digitação-feitas-na-conversão)).
-> As ilustrações originais foram **substituídas** pelas versões redesenhadas em [`resultados/`](resultados/) (imagens em `../assets/images/`). Abaixo de cada imagem, um marcador `[FIGURA …]` indica o formato de origem.
->
-> Legenda dos marcadores: **TikZ** = LaTeX (TikZ), **HTML** = SVG/HTML, **MD** = Markdown nativo.
+<!--
+Conversão de [`Roteiro_08_v3.pdf`](Roteiro_08_v3.pdf) para Markdown.
+Texto transcrito do PDF; erros de digitação óbvios foram corrigidos (lista em [`CLASSIFICACAO_ILUSTRACOES.md`](CLASSIFICACAO_ILUSTRACOES.md#apêndice-b--correções-de-digitação-feitas-na-conversão)).
+As ilustrações originais foram **substituídas** pelas versões redesenhadas em [`resultados/`](resultados/) (imagens em `../assets/images/`). Abaixo de cada imagem, um marcador `[FIGURA …]` indica o formato de origem.
+
+Legenda dos marcadores: **TikZ** = LaTeX (TikZ), **HTML** = SVG/HTML, **MD** = Markdown nativo.
+-->
 
 ---
 
@@ -31,19 +33,19 @@
 
 Implementar um <u>contador módulo 100</u> com <u>saída BCD</u>, com entradas de ‘reset’ e ‘load’ síncronas, clock de 1 Hz e entrada de ‘enable’ (ativa em nível baixo). A caixa preta e o diagrama de blocos da arquitetura interna desse sistema são apresentados na Figura 1.
 
-<img src="../assets/images/figura_01_contador100_sistema.png" alt="Caixa preta (a) do sistema a ser implementado na questão 1" width="402" style="max-width:100%;height:auto;margin: 10px auto 5px auto;">
+<p align="center" style="text-align:center"><img src="../assets/images/figura_01_contador100_sistema.png" alt="Caixa preta (a) do sistema a ser implementado na questão 1" width="402" style="max-width:100%;height:auto"></p>
 
-> **[FIGURA 1 — TikZ]** Caixa preta (a) do sistema a ser implementado na questão 1.
+<!-- **[FIGURA 1 — TikZ]** Caixa preta (a) do sistema a ser implementado na questão 1. -->
 
 A entidade `contador100` (Figura 2a) implementa o contador de 100 tempos em si. Trata-se de um contador que, a cada ciclo de clock, conta de 0 a 99 em representação BCD, isto é, com duas saídas de 4 bits que representam, respectivamente, o dígito da dezena e o da unidade. Para implementar este contador de módulo 100, você deve utilizar (como componentes) dois contadores de módulo 10. Pesquise sobre como cascatear contadores de módulo 10 (Figura 2b) de modo a construir contadores de módulo 100, módulo 1000, etc.
 
-<img src="../assets/images/figura_02a_contador100.png" alt="Caixa preta da entidade contador100" width="488" style="max-width:100%;height:auto;margin: 10px auto 5px auto;">
+<p align="center" style="text-align:center"><img src="../assets/images/figura_02a_contador100.png" alt="Caixa preta da entidade contador100" width="488" style="max-width:100%;height:auto"></p>
 
-> **[FIGURA 2(a) — TikZ]** Caixa preta da entidade `contador100`.
+<!-- **[FIGURA 2(a) — TikZ]** Caixa preta da entidade `contador100`. -->
 
-<img src="../assets/images/figura_02b_contador10.png" alt="Caixa preta da entidade contador10" width="406" style="max-width:100%;height:auto;margin: 10px auto 5px auto;">
+<p align="center" style="text-align:center"><img src="../assets/images/figura_02b_contador10.png" alt="Caixa preta da entidade contador10" width="406" style="max-width:100%;height:auto"></p>
 
-> **[FIGURA 2(b) — TikZ]** Caixa preta da entidade `contador10`.
+<!-- **[FIGURA 2(b) — TikZ]** Caixa preta da entidade `contador10`. -->
 
 *Figura 2: Caixas pretas das entidades `contador100` (a) e `contador10` (b).*
 
@@ -61,17 +63,17 @@ A saída `RCO` (sigla do inglês *ripple carry-out*) é ativa em nível baixo, e
 
 Implemente um sistema de temporização do controle de semáforos, com ‘reset’ síncrono, clock de 1 Hz, quatro saídas binárias, indicando que já se passaram, respectivamente, 5 segundos (`T5`), 6 segundos (`T6`), 20 segundos (`T20`) e 60 segundos (`T60`). A caixa preta da arquitetura interna desse sistema é apresentada na Figura 3(a).
 
-<img src="../assets/images/figura_03a_temporizador.png" alt="Caixa preta do sistema de temporização (Questão 2)" width="439" style="max-width:100;margin: 10px auto 5px auto;%;height:auto">
+<p align="center" style="text-align:center"><img src="../assets/images/figura_03a_temporizador.png" alt="Caixa preta do sistema de temporização (Questão 2)" width="439" style="max-width:100%;height:auto"></p>
 
-> **[FIGURA 3(a) — TikZ]** Caixa preta do sistema de temporização (Questão 2).
+<!-- **[FIGURA 3(a) — TikZ]** Caixa preta do sistema de temporização (Questão 2). -->
 
-<img src="../assets/images/figura_03b_timeflags.png" alt="Entidade timeflags" width="410" style="max-width:100%;height:auto;margin: 10px auto 5px auto;">
+<p align="center" style="text-align:center"><img src="../assets/images/figura_03b_timeflags.png" alt="Entidade timeflags" width="410" style="max-width:100%;height:auto"></p>
 
-> **[FIGURA 3(b) — TikZ]** Entidade `timeflags`.
+<!-- **[FIGURA 3(b) — TikZ]** Entidade `timeflags`. -->
 
-<img src="../assets/images/figura_03c_arquitetura_temporizador.png" alt="Sistema a ser implementado na questão 2: contador100 + timeflags" width="872" style="max-width:100%;height:auto;margin: 10px auto 5px auto;">
+<p align="center" style="text-align:center"><img src="../assets/images/figura_03c_arquitetura_temporizador.png" alt="Sistema a ser implementado na questão 2: contador100 + timeflags" width="872" style="max-width:100%;height:auto"></p>
 
-> **[FIGURA 3(c) — TikZ]** Sistema a ser implementado na questão 2: `contador100` + `timeflags`.
+<!-- **[FIGURA 3(c) — TikZ]** Sistema a ser implementado na questão 2: `contador100` + `timeflags`. -->
 
 *Figura 3: Caixa preta (a) e diagrama de blocos da arquitetura interna (b) e sistema a ser implementado na questão 2 (c).*
 
@@ -79,7 +81,7 @@ Na Figura 3(c) é apresentado o sistema completo a ser implementado. A entidade 
 
 Esses flags indicadores podem ser implementados usando atribuições condicionais (estrutura “when-else”) e os operadores de comparação da linguagem VHDL, conforme exemplificado a seguir. Trata-se de um circuito puramente combinacional, não sendo necessário o uso de uma estrutura “process”.
 
-> **[FIGURA — MD]** Na versão em PDF este trecho é uma captura de tela do código. Aqui virou bloco de código selecionável.
+<!-- > **[FIGURA — MD]** Na versão em PDF este trecho é uma captura de tela do código. Aqui virou bloco de código selecionável. -->
 
 ```vhdl
 Ya <= '1' when (A >  x"35") else   -- operador "maior que"
@@ -109,11 +111,13 @@ Nos exemplos acima, `x"35"` é a representação em hexadecimal do número biná
 
 Implemente o sistema de controle de semáforos com três bits de entrada (sensor de carros na direção norte/sul, sensor de carros na direção leste/oeste e chave de liga/desliga do sistema) e saídas representando os estados dos semáforos e o temporizador/contador (luzes verde, amarela e vermelha de cada direção e estado do contador). O cruzamento é ilustrado na Figura 4.
 
-<img src="../assets/images/figura_04_cruzamento.png" alt="Ilustração do cruzamento, mostrando a posição dos semáforos e dos sensores" width="760" style="max-width:100%;height:auto;margin: 10px auto 5px auto;">
+<p align="center" style="text-align:center"><img src="../assets/images/figura_04_cruzamento.png" alt="Ilustração do cruzamento, mostrando a posição dos semáforos e dos sensores" width="760" style="max-width:100%;height:auto"></p>
 
-> **[FIGURA 4 — HTML/SVG]** Ilustração do cruzamento, mostrando a posição dos semáforos e dos sensores.
+<!-- **[FIGURA 4 — HTML/SVG]** Ilustração do cruzamento, mostrando a posição dos semáforos e dos sensores. -->
 
 *Figura 4: Ilustração do cruzamento, mostrando a posição dos semáforos e dos sensores.*
+
+> Vide [simulação](relatorios\simulacao\figura_04_cruzamento.html) simplificada.
 
 O cruzamento deverá ficar liberado para determinada direção (luz verde) e bloqueado na outra direção (luz vermelha) por 60 segundos, exceto caso haja carro esperando na direção oposta e não haja carros atravessando na direção em questão e já se tenha passado pelo menos 20 segundos. Antes de trocar a pista liberada, o semáforo deverá mostrar a luz amarela (com luz vermelha no outro semáforo) por 6 segundos e, em seguida, a luz vermelha (em ambos os semáforos) por 5 segundos. A qualquer momento, se a chave de liga/desliga for desativada, os semáforos deverão entrar em estado intermitente, no qual alternarão entre a luz amarela e nenhuma luz acesa, com intervalo de 1 segundo entre cada, devendo voltar a qualquer momento ao funcionamento normal caso a chave seja reativada.
 
@@ -131,15 +135,19 @@ e as seguintes saídas:
 
 A caixa preta desse sistema é apresentada na Figura 5a. Serão usadas (como componentes) todas as entidades utilizadas na arquitetura interna da entidade da questão 2 e uma nova entidade: `maqestados`, que será detalhada a seguir.
 
-<img src="../assets/images/figura_05a_exp8visto3.png" alt="Caixa preta da entidade exp8visto3" width="417" style="max-width:100%;height:auto;margin: 10px auto 5px auto;">
+<p align="center" style="text-align:center"><img src="../assets/images/figura_05a_exp8visto3.png" alt="Caixa preta da entidade exp8visto3" width="417" style="max-width:100%;height:auto"></p>
 
-> **[FIGURA 5(a) — TikZ]** Caixa preta da entidade `exp8visto3`.
-> ⚠ O original rotula **duas** saídas como `semaforoA`; a segunda deve ser `semaforoB`.
+<!--
+**[FIGURA 5(a) — TikZ]** Caixa preta da entidade `exp8visto3`.
+⚠ O original rotula **duas** saídas como `semaforoA`; a segunda deve ser `semaforoB`.
+-->
 
-<img src="../assets/images/figura_05b_maqestados.png" alt="Caixa preta da entidade maqestados" width="614" style="max-width:100%;height:auto;margin: 10px auto 5px auto;">
+<p align="center" style="text-align:center"><img src="../assets/images/figura_05b_maqestados.png" alt="Caixa preta da entidade maqestados" width="614" style="max-width:100%;height:auto"></p>
 
-> **[FIGURA 5(b) — TikZ]** Caixa preta da entidade `maqestados`.
-> ⚠ Mesmo erro: o original rotula as duas saídas de 3 bits como `semaforoA`.
+<!--
+**[FIGURA 5(b) — TikZ]** Caixa preta da entidade `maqestados`.
+⚠ Mesmo erro: o original rotula as duas saídas de 3 bits como `semaforoA`.
+-->
 
 *Figura 5: Caixas pretas das entidades `exp8visto3` (a) e `maqestados` (b).*
 
