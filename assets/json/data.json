@@ -5,21 +5,58 @@
       "id": "desafio",
       "titulo": "Desafio",
       "itens": [
-        { "titulo": "8p1 – Semáforos", "href": "desafio/8p1/" }
+        {
+          "titulo": "8p1 – Semáforos",
+          "href": "desafio/8p1/"
+        }
       ]
     },
     {
       "id": "validacoes",
       "titulo": "Validações",
       "itens": [
-        { "titulo": "8v0 – Relógio digital", "href": "validacoes/8v0/" }
+        {
+          "titulo": "8v0 – Relógio digital",
+          "href": "validacoes/8v0/"
+        }
       ]
     },
     {
       "id": "relatorios",
       "titulo": "Relatórios",
       "itens": [
-        { "titulo": "Relatório 2", "href": "md.html?src=relatorios/relatorio2.md" }
+        {
+          "titulo": "Roteiro 1",
+          "href": "md.html?src=relatorios/roteiro1.md"
+        },
+        {
+          "titulo": "Roteiro 2",
+          "href": "md.html?src=relatorios/roteiro2.md"
+        },
+        {
+          "titulo": "Roteiro 3",
+          "href": "md.html?src=relatorios/roteiro3.md"
+        },
+        {
+          "titulo": "Roteiro 4",
+          "href": "md.html?src=relatorios/roteiro4.md"
+        },
+        {
+          "titulo": "Roteiro 5",
+          "href": "md.html?src=relatorios/roteiro5.md"
+        },
+        {
+          "titulo": "Roteiro 6",
+          "href": "md.html?src=relatorios/roteiro6.md"
+        },
+        {
+          "titulo": "Roteiro 7",
+          "href": "md.html?src=relatorios/roteiro7.md"
+        },
+        {
+          "titulo": "Roteiro 8",
+          "href": "md.html?src=relatorios/roteiro8.md"
+        }
       ]
     }
   ]
