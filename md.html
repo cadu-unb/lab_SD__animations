@@ -12,6 +12,10 @@
   table{border-collapse:collapse} td,th{border:1px solid #ccc;padding:.3em .6em}
   img{max-width:100%}
   nav{margin-bottom:1rem}
+  /* dificulta cópia: sem seleção, sem menu de toque longo, sem arrastar, sem imprimir */
+  #out, #out *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  #out img{-webkit-user-drag:none;pointer-events:none}
+  @media print{#out{display:none}body::before{content:"Impressão desativada.";font:16px system-ui}}
   @media (prefers-color-scheme:dark){
     body{background:#14161a;color:#e6e6e6} a{color:#8ab4ff} pre,code{background:#222730} td,th{border-color:#444}
   }

@@ -1,6 +1,18 @@
 // Uso: md.html?src=relatorios/relatorio2.md
 (async () => {
   const out = document.getElementById('out');
+  // dificulta cópia (não impede: o .md continua público)
+  ['copy', 'cut', 'contextmenu', 'dragstart', 'selectstart'].forEach((ev) =>
+    out.addEventListener(ev, (e) => e.preventDefault())
+  );
+  document.addEventListener('copy', (e) => {
+    e.clipboardData.setData('text/plain', '');
+    e.preventDefault();
+  });
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && ['a', 'c', 'x', 'p', 's', 'u'].includes(e.key.toLowerCase())) e.preventDefault();
+  });
+
   const src = new URLSearchParams(location.search).get('src') || '';
   // só caminhos relativos do próprio site, terminando em .md
   if (!/^[\w\-./]+\.md$/i.test(src) || src.startsWith('/') || src.includes('..')) {
