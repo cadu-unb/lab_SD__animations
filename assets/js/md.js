@@ -45,8 +45,20 @@
     if (h1) document.title = h1.textContent;
     // links/imagens relativos resolvem a partir da pasta do .md
     const base = new URL(src, location.href);
+    const fix = (v) => v.replace(/\\/g, '/'); // aceita "\" do Windows
     out.querySelectorAll('img[src]').forEach((n) => {
-      n.src = new URL(n.getAttribute('src'), base).href;
+      n.src = new URL(fix(n.getAttribute('src')), base).href;
+    });
+    out.querySelectorAll('a[href]').forEach((a) => {
+      const h = a.getAttribute('href');
+      if (/^(#|[a-z][a-z0-9+.-]*:|\/\/)/i.test(h)) return; // âncora, http:, mailto:...
+      const u = new URL(fix(h), base);
+      const site = new URL('.', location.href).href; // pasta do md.html
+      if (u.href.startsWith(site) && /\.md$/i.test(u.pathname)) {
+        a.href = 'md.html?src=' + u.href.slice(site.length); // outro .md abre no visualizador
+      } else {
+        a.href = u.href;
+      }
     });
   } catch (e) {
     out.textContent = 'Erro: ' + e.message;
