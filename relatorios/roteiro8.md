@@ -117,7 +117,7 @@ Implemente o sistema de controle de semáforos com três bits de entrada (sensor
 
 *Figura 4: Ilustração do cruzamento, mostrando a posição dos semáforos e dos sensores.*
 
-> Vide [simulação](relatorios/simulacao/figura_04_cruzamento.html.) simplificada.
+> Vide [simulação](relatorios/simulacao/r8_figura_04_cruzamento.html) simplificada.
 
 O cruzamento deverá ficar liberado para determinada direção (luz verde) e bloqueado na outra direção (luz vermelha) por 60 segundos, exceto caso haja carro esperando na direção oposta e não haja carros atravessando na direção em questão e já se tenha passado pelo menos 20 segundos. Antes de trocar a pista liberada, o semáforo deverá mostrar a luz amarela (com luz vermelha no outro semáforo) por 6 segundos e, em seguida, a luz vermelha (em ambos os semáforos) por 5 segundos. A qualquer momento, se a chave de liga/desliga for desativada, os semáforos deverão entrar em estado intermitente, no qual alternarão entre a luz amarela e nenhuma luz acesa, com intervalo de 1 segundo entre cada, devendo voltar a qualquer momento ao funcionamento normal caso a chave seja reativada.
 

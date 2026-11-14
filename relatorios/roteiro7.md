@@ -29,6 +29,8 @@ A entidade VHDL deverá ter três saídas de 1 bit cada que indicarão, respecti
 
 Na estrutura `process` que descreve a lógica dos registradores (memória da máquina de estados), inclua uma condição de “reset” (associada a uma entrada da entidade, ligada a um botão ou a uma chave do kit de desenvolvimento) que leve, de forma assíncrona (isto é, independentemente do sinal de clock) a máquina de estados de volta ao estado inicial. Isto facilitará o processo de teste da máquina implementada. Um exemplo deimplementação de condição de “reset” é mostrada no documento tutorial fornecido em conjunto a este roteiro.
 
+> Vide [simulação](relatorios/simulacao/r7_maquina_simples.html) simplificada.
+
 ## Dicas
 
 1. Antes de começar, certifique-se de que você sabe a diferença entre uma máquina de estados do tipo Moore e uma do tipo Mealy.

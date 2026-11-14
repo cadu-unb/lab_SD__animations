@@ -1,4 +1,5 @@
-_python
+_python/
+_plan/
 __pycache__/
 node_modules/
 .vscode/

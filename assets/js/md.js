@@ -41,6 +41,10 @@
     });
 
     out.innerHTML = html;
+    // destaque de sintaxe VHDL nos blocos ```vhdl
+    out.querySelectorAll('pre code.language-vhdl').forEach((c) => {
+      c.innerHTML = window.highlightVHDL(c.textContent);
+    });
     const h1 = out.querySelector('h1');
     if (h1) document.title = h1.textContent;
     // links/imagens relativos resolvem a partir da pasta do .md
@@ -49,17 +53,25 @@
     out.querySelectorAll('img[src]').forEach((n) => {
       n.src = new URL(fix(n.getAttribute('src')), base).href;
     });
+    const site = new URL('.', location.href).href; // pasta do md.html (raiz do site)
+    const dest = (u) =>
+      u.href.startsWith(site) && /\.md$/i.test(u.pathname)
+        ? 'md.html?src=' + u.href.slice(site.length) // outro .md abre no visualizador
+        : u.href;
     out.querySelectorAll('a[href]').forEach((a) => {
-      const h = a.getAttribute('href');
+      const h = fix(a.getAttribute('href'));
       if (/^(#|[a-z][a-z0-9+.-]*:|\/\/)/i.test(h)) return; // âncora, http:, mailto:...
-      const u = new URL(fix(h), base);
-      const site = new URL('.', location.href).href; // pasta do md.html
-      if (u.href.startsWith(site) && /\.md$/i.test(u.pathname)) {
-        a.href = 'md.html?src=' + u.href.slice(site.length); // outro .md abre no visualizador
-      } else {
-        a.href = u.href;
-      }
+      const fromMd = new URL(h, base);                      // relativo à pasta do .md
+      const fromRoot = new URL(h.replace(/^\//, ''), site); // relativo à raiz do site
+      a.href = dest(fromMd);
+      if (fromMd.href === fromRoot.href) return;
+      // tolera caminhos escritos a partir da raiz (ex.: relatorios/simulacao/x.html)
+      fetch(fromMd.href, { method: 'HEAD' })
+        .then((r) => (r.ok ? null : fetch(fromRoot.href, { method: 'HEAD' })))
+        .then((r) => { if (r && r.ok) a.href = dest(fromRoot); })
+        .catch(() => {});
     });
+    document.dispatchEvent(new CustomEvent('md:ready', { detail: { src } })); // toolbar.js monta sumário e navegação
   } catch (e) {
     out.textContent = 'Erro: ' + e.message;
   }

@@ -7,6 +7,13 @@
     return n;
   };
 
+  // qualquer link para .md passa pelo visualizador md.html
+  const link = (h) => {
+    h = h.replace(/\\/g, '/');
+    const abs = /^([a-z][a-z0-9+.-]*:|\/\/|#)/i.test(h);
+    return !abs && !/^md\.html(\?|$)/.test(h) && /\.md$/i.test(h) ? 'md.html?src=' + h.replace(/^\.\//, '') : h;
+  };
+
   try {
     const res = await fetch('assets/json/data.json');
     if (!res.ok) throw new Error(`assets/json/data.json: HTTP ${res.status}`);
@@ -20,7 +27,7 @@
           'section',
           { id: s.id },
           el('h2', {}, s.titulo),
-          el('ul', {}, ...s.itens.map((i) => el('li', {}, el('a', { href: i.href }, i.titulo))))
+          el('ul', {}, ...s.itens.map((i) => el('li', {}, el('a', { href: link(i.href) }, i.titulo))))
         )
       )
     );

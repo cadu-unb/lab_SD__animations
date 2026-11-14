@@ -1,4 +1,6 @@
-# Experimento 1. Simulação de circuitos digitais
+# Laboratório de Sistemas Digitais — Experimento 01
+
+Simulação de circuitos digitais
 
 ## Objetivos
 

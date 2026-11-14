@@ -4,28 +4,71 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Markdown</title>
+<script src="assets/js/theme-init.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<style>
-  body{font:16px/1.6 system-ui,sans-serif;max-width:780px;margin:2rem auto;padding:0 1rem}
-  pre,code{background:#f3f4f6;border-radius:4px}
-  code{padding:.1em .3em} pre{padding:.8em;overflow:auto} pre code{padding:0}
-  table{border-collapse:collapse} td,th{border:1px solid #ccc;padding:.3em .6em}
-  img{max-width:100%}
-  nav{margin-bottom:1rem}
-  /* dificulta cópia: sem seleção, sem menu de toque longo, sem arrastar, sem imprimir */
-  #out, #out *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-  #out img{-webkit-user-drag:none;pointer-events:none}
-  @media print{#out{display:none}body::before{content:"Impressão desativada.";font:16px system-ui}}
-  @media (prefers-color-scheme:dark){
-    body{background:#14161a;color:#e6e6e6} a{color:#8ab4ff} pre,code{background:#222730} td,th{border-color:#444}
-  }
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="assets/css/md.css">
 </head>
 <body>
-<nav><a href="./">← Início</a></nav>
+<header class="brand">
+  <img src="assets/images/dep.svg" alt="Faculdade de Tecnologia – Departamento de Engenharia Elétrica">
+  <img src="assets/images/unb.svg" alt="Universidade de Brasília">
+</header>
+<nav class="home"><a href="./">← Início</a></nav>
+
+<nav class="filenav" aria-label="Navegação entre arquivos (início)" hidden>
+  <button class="fbtn" data-dir="prev" type="button" disabled><i class="fa-solid fa-chevron-left" aria-hidden="true"></i><span>Arquivo anterior</span></button>
+  <span class="fpos"></span>
+  <button class="fbtn" data-dir="next" type="button" disabled><span>Próximo arquivo</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+</nav>
+
 <main id="out">Carregando…</main>
+
+<nav class="filenav" aria-label="Navegação entre arquivos (fim)" hidden>
+  <button class="fbtn" data-dir="prev" type="button" disabled><i class="fa-solid fa-chevron-left" aria-hidden="true"></i><span>Arquivo anterior</span></button>
+  <span class="fpos"></span>
+  <button class="fbtn" data-dir="next" type="button" disabled><span>Próximo arquivo</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+</nav>
+
+<footer>
+  <hr>
+  <img src="assets/images/adress.svg" alt="Faculdade de Tecnologia, Universidade de Brasília, Campus Universitário Darcy Ribeiro, Gleba A, Avenida L3 Norte, CEP 70.910-900, Brasília – DF, Caixa postal 4386, fone +55 61 3107 5510, fax +55 61 3107 5590, secene@ene.unb.br, www.ene.unb.br">
+</footer>
+
+<!-- barra de ferramentas de leitura -->
+<div id="tools">
+  <button id="tab" class="tab" type="button" aria-label="Abrir ferramentas de leitura" aria-controls="panel" aria-expanded="false" title="Abrir ferramentas de leitura">
+    <i class="fa-solid fa-angles-left" aria-hidden="true"></i>
+  </button>
+
+  <div id="dock" hidden>
+    <div id="panel" role="toolbar" aria-orientation="vertical" aria-label="Ferramentas de leitura">
+      <div class="grp">
+        <button id="btnCollapse" class="btn" type="button" aria-label="Recolher barra de ferramentas" title="Recolher barra de ferramentas"><i class="fa-solid fa-angles-right" aria-hidden="true"></i></button>
+      </div>
+      <div class="grp" role="group" aria-label="Tema">
+        <button id="btnTheme" class="btn" type="button"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+      </div>
+      <div class="grp" role="group" aria-label="Tamanho da fonte">
+        <button id="btnFsMinus" class="btn" type="button" aria-label="Diminuir fonte" title="Diminuir fonte"><span class="fs" aria-hidden="true">A<i class="fa-solid fa-minus"></i></span></button>
+        <button id="btnFsReset" class="btn" type="button" aria-label="Restaurar tamanho padrão da fonte" title="Restaurar tamanho padrão"><span class="fs" aria-hidden="true">A<i class="fa-solid fa-rotate-left"></i></span></button>
+        <button id="btnFsPlus" class="btn" type="button" aria-label="Aumentar fonte" title="Aumentar fonte"><span class="fs" aria-hidden="true">A<i class="fa-solid fa-plus"></i></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- sumário: canto superior direito -->
+<button id="btnToc" class="float" type="button" aria-label="Sumário" title="Sumário" aria-haspopup="true" aria-expanded="false" aria-controls="toc" disabled><i class="fa-solid fa-list-ul" aria-hidden="true"></i></button>
+<nav id="toc" aria-label="Sumário do documento" hidden></nav>
+
+<!-- voltar ao topo: canto inferior direito, sempre visível -->
+<button id="btnTop" class="float" type="button" aria-label="Voltar ao topo" title="Voltar ao topo"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="assets/js/vhdl.js"></script>
+<script src="assets/js/toolbar.js"></script>
 <script src="assets/js/md.js"></script>
 </body>
 </html>
