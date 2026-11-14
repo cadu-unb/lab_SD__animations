@@ -139,3 +139,7 @@ nav.home { margin-bottom: 1rem; }
   body > * { display: none !important; }
   body::before { content: "Impressão desativada."; font: 16px system-ui; }
 }
+
+/* diagramas Mermaid */
+#out .mermaid { display: flex; justify-content: center; overflow-x: auto; margin: 1em 0; }
+#out .mermaid svg { max-width: 100%; height: auto; }

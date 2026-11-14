@@ -1,4 +1,47 @@
 // Uso: md.html?src=relatorios/relatorio2.md
+
+/* ---------- Mermaid (carregado sob demanda) ---------- */
+const MERMAID_URL = 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js';
+const MERMAID_SRI = 'sha384-rbtjAdnIQE/aQJGEgXrVUlMibdfTSa4PQju4HDhN3sR2PmaKFzhEafuePsl9H/9I';
+let mermaidLoad = null;
+function loadMermaid() {
+  mermaidLoad = mermaidLoad || new Promise((ok, fail) => {
+    const s = document.createElement('script');
+    s.src = MERMAID_URL; s.integrity = MERMAID_SRI; s.crossOrigin = 'anonymous';
+    s.onload = () => ok(window.mermaid);
+    s.onerror = () => fail(new Error('não foi possível carregar o Mermaid'));
+    document.head.append(s);
+  });
+  return mermaidLoad;
+}
+async function drawMermaid(nodes) {
+  const mermaid = await loadMermaid();
+  const dark = document.documentElement.dataset.theme === 'dark';
+  mermaid.initialize({ startOnLoad: false, securityLevel: 'strict', theme: dark ? 'dark' : 'default' });
+  for (const n of nodes) { // restaura o código-fonte e redesenha (também ao trocar o tema)
+    n.removeAttribute('data-processed');
+    n.textContent = n.dataset.src;
+  }
+  await mermaid.run({ nodes });
+}
+function renderMermaid(out) {
+  const blocks = [...out.querySelectorAll('pre code.language-mermaid')];
+  if (!blocks.length) return;
+  const nodes = blocks.map((c) => {
+    const d = document.createElement('div');
+    d.className = 'mermaid';
+    d.dataset.src = c.textContent;
+    d.textContent = 'Carregando diagrama…';
+    c.closest('pre').replaceWith(d);
+    return d;
+  });
+  const run = () => drawMermaid(nodes).catch((e) => {
+    nodes.forEach((n) => { n.textContent = 'Erro no diagrama: ' + e.message; });
+  });
+  run();
+  document.addEventListener('md:theme', run); // tema mudou -> redesenha com as cores certas
+}
+
 (async () => {
   const out = document.getElementById('out');
   // dificulta cópia (não impede: o .md continua público)
@@ -45,6 +88,7 @@
     out.querySelectorAll('pre code.language-vhdl').forEach((c) => {
       c.innerHTML = window.highlightVHDL(c.textContent);
     });
+    renderMermaid(out); // diagramas ```mermaid (biblioteca carregada só se houver)
     const h1 = out.querySelector('h1');
     if (h1) document.title = h1.textContent;
     // links/imagens relativos resolvem a partir da pasta do .md

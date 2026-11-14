@@ -21,6 +21,7 @@
     root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
     store.set('md.theme', root.dataset.theme);
     paintTheme();
+    document.dispatchEvent(new CustomEvent('md:theme'));
   });
   paintTheme();
 
